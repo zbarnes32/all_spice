@@ -88,5 +88,16 @@ public class RecipesRepository
         if (rowsAffected == 0) throw new Exception("Unable to update");
         if (rowsAffected > 1) throw new Exception("Updated too many recipes");
     }
+
+    public void DestroyRecipe(int recipeId)
+    {
+        string sql = "DELETE FROM recipes WHERE id = @recipeId LIMIT 1 ;";
+
+        int rowsAffected = _db.Execute(sql, new { recipeId });
+
+        if(rowsAffected == 0) throw new Exception("Unable to delete.");
+        if (rowsAffected > 1) throw new Exception("Deleted more than attended.");
+
+    }
 }
 

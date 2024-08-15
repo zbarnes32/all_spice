@@ -28,6 +28,11 @@ public class RecipesService
     public Recipe GetRecipeById(int recipeId)
     {
        Recipe recipe = _repository.GetRecipeById(recipeId);
+
+       if (recipe == null)
+       {
+        throw new Exception($"No recipe with the id of {recipeId}.");
+       }
        return recipe; 
     }
 
@@ -48,5 +53,19 @@ public class RecipesService
         _repository.UpdateRecipe(recipeToUpdate);
 
         return recipeToUpdate;
+    }
+
+    public string DestroyRecipe(int recipeId, string userId)
+    {
+        Recipe recipe = GetRecipeById(recipeId);
+
+        if(recipe.CreatorId != userId)
+        {
+            throw new Exception("You are not able to delete a recipe you didn't create.");
+        }
+
+        _repository.DestroyRecipe(recipeId);
+
+        return "Recipe has been deleted.";
     }
 }
