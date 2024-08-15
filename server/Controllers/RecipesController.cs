@@ -60,4 +60,21 @@ public ActionResult<Recipe> GetRecipeById(int recipeId)
     }
 }
 
+[HttpPut("{recipeId}")]
+[Authorize]
+
+public async Task<ActionResult<Recipe>> UpdateRecipe(int recipeId, [FromBody] Recipe recipeData)
+{
+    try 
+    {
+        Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+        Recipe recipe = _recipesService.UpdateRecipe(recipeId, userInfo.Id, recipeData);
+        return Ok(recipe);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+}
+
 }

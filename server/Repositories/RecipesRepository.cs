@@ -67,8 +67,26 @@ public class RecipesRepository
         recipe.Creator = profile;
         return recipe;
        }, new {recipeId}).FirstOrDefault();
-       
+
        return recipe;
+    }
+
+    public void UpdateRecipe(Recipe recipeToUpdate)
+    {
+        string sql =@"
+        UPDATE
+        recipes
+        SET
+        instructions = @Instructions,
+        img = @Img,
+        title = @Title,
+        category = @category
+        WHERE id = @Id LIMIT 1;";
+
+        int rowsAffected = _db.Execute(sql, recipeToUpdate);
+
+        if (rowsAffected == 0) throw new Exception("Unable to update");
+        if (rowsAffected > 1) throw new Exception("Updated too many recipes");
     }
 }
 
