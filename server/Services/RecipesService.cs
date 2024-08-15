@@ -1,4 +1,6 @@
 
+
+
 namespace all_spice.Services;
 
 public class RecipesService
@@ -14,5 +16,17 @@ public class RecipesService
     {
         Recipe recipe = _repository.CreateRecipe(recipeData);
         return recipe;
+    }
+
+    public List<Recipe> GetAllRecipes()
+    {
+        List<Recipe> recipes = _repository.GetAllRecipes();
+        return recipes;
+    }
+
+    public Recipe GetRecipeById(int recipeId)
+    {
+       Recipe recipe = _repository.GetRecipeById(recipeId);
+       return recipe; 
     }
 }
