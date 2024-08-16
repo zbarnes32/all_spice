@@ -34,7 +34,7 @@ async function getAllRecipes() {
   </section>
   <section class="container">
     <div class="row">
-      <div v-for="recipe in recipes" :key="recipe.id" class="col-md-4">
+      <div v-for="recipe in recipes" :key="recipe.id" class="col-md-4 my-3">
         <RecipeCard :recipeProp="recipe" />
       </div>
     </div>
