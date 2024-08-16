@@ -44,7 +44,7 @@ async function getAllRecipes() {
 <style scoped lang="scss">
 
 .bg-hero {
-  background-image: url('https://images.unsplash.com/photo-1478369402113-1fd53f17e8b4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGZvb2R8ZW58MHx8MHx8fDA%3D');
+  background-image: url("/img/forzach.jpg");
   background-size: cover;
   background-position: center;
   height: 40vh;

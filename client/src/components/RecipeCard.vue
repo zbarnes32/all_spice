@@ -11,7 +11,7 @@ defineProps({
 
 <template>
 
-<div class="card bg-dark text-white">
+<div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#recipeModal">
   <img :src="recipeProp.img" class="card-img" :alt="recipeProp.title">
   <div class="card-img-overlay">
     <h5 class="recipe-title fw-bold rounded p-2">{{ recipeProp.title }}</h5>
