@@ -1,17 +1,22 @@
 <script setup>
 import { Recipe } from '@/models/Recipe.js';
+import { recipesService } from '@/services/RecipesService.js';
 
 
-defineProps({
+const props = defineProps({
     recipeProp: { type: Recipe, required: true }
 })
+
+function setActiveRecipe() {
+    recipesService.setActiveRecipe(props.recipeProp)
+}
 
 </script>
 
 
 <template>
 
-<div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#recipeModal">
+<div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#recipeModal" @click="setActiveRecipe()">
   <img :src="recipeProp.img" class="card-img" :alt="recipeProp.title">
   <div class="card-img-overlay">
     <h5 class="recipe-title fw-bold rounded p-2">{{ recipeProp.title }}</h5>
