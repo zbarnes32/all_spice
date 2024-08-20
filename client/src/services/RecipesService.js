@@ -6,6 +6,9 @@ import { AppState } from "@/AppState.js"
 
 
 class RecipesService {
+    createRecipe() {
+      throw new Error('Method not implemented.')
+    }
     setActiveRecipe(recipeProp) {
         AppState.activeRecipe = recipeProp
     }
