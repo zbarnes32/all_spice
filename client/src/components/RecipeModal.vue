@@ -1,9 +1,24 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { recipesService } from '@/services/RecipesService.js';
+import Pop from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 
 const recipe = computed(() => AppState.activeRecipe)
+
+const account = computed(() => AppState.account)
+
+async function destroyRecipe(recipeId){
+  try {
+    const wantsToDelete = await Pop.confirm("Are you sure you want to delete your recipe?")
+    if(!wantsToDelete) return
+    await recipesService.destroyRecipe(recipeId)
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
 
 </script>
 
@@ -23,12 +38,13 @@ const recipe = computed(() => AppState.activeRecipe)
                         <div class="d-flex justify-content-between">
                           <div class="d-flex">
                             <h3 class="card-title fw-bold me-3">{{ recipe.title }}</h3>
-                            <div class="dropdown">
+                            <div v-if="account?.id == recipe.creatorId" class="dropdown">
                             <i class="mdi mdi-dots-horizontal fs-3 " type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             </i>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
                               <li role="button">Edit Recipe</li>
-                              <li role="button">Delete Recipe</li>
+                              <li role="button" class="text-danger" @click="destroyRecipe(recipe.id)">Delete Recipe</li>
+                              
                               
                             </ul>
                             </div>
