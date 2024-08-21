@@ -13,7 +13,7 @@ const recipe = computed(() => AppState.activeRecipe)
 <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div v-if="recipe" class="modal-content">
-        <div class="card mb-3">
+        <div class="card">
             <div class="row g-0">
             <div class="col-md-6">
                 <img :src=recipe.img class="img-fluid rounded-start modal-img" :alt=recipe.title>
@@ -21,7 +21,18 @@ const recipe = computed(() => AppState.activeRecipe)
                 <div class="col-md-6">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title fw-bold">{{ recipe.title }}</h3>
+                          <div class="d-flex">
+                            <h3 class="card-title fw-bold me-3">{{ recipe.title }}</h3>
+                            <div class="dropdown">
+                            <i class="mdi mdi-dots-horizontal fs-3 " type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            </i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                              <li role="button">Edit Recipe</li>
+                              <li role="button">Delete Recipe</li>
+                              
+                            </ul>
+                            </div>
+                          </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <!-- FIXME: Add in creator info -->

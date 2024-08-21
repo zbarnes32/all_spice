@@ -16,7 +16,7 @@ function setActiveRecipe() {
 
 <template>
 
-<div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#recipeModal" @click="setActiveRecipe()">
+<div class="card text-light recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal" @click="setActiveRecipe()">
   <img :src="recipeProp.img" class="card-img" :alt="recipeProp.title">
   <div class="card-img-overlay">
     <h5 class="recipe-title fw-bold rounded p-2">{{ recipeProp.title }}</h5>
@@ -31,6 +31,10 @@ function setActiveRecipe() {
 
 .card {
     height: 20em;
+}
+
+.recipe-card {
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.502);
 }
 
 .card-img {
@@ -48,7 +52,7 @@ function setActiveRecipe() {
 
 .recipe-category {
     background-color: rgba(83, 82, 82, 0.750);
-    width: 25%;
+    width: 7.5em;
     text-align: center;
     position: absolute;
     top: 5%;

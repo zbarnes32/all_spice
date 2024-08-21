@@ -2,7 +2,7 @@
 import { AppState } from '@/AppState.js';
 import CreateRecipeForm from '@/components/CreateRecipeForm.vue';
 import RecipeCard from '@/components/RecipeCard.vue';
-import ReuseableModel from '@/components/ReuseableModel.vue';
+import ReuseableModal from '@/components/ReuseableModal.vue';
 import { recipesService } from '@/services/RecipesService.js';
 import Pop from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
@@ -18,14 +18,6 @@ async function getAllRecipes() {
     await recipesService.getAllRecipes()
   }
   catch (error){
-    Pop.error(error);
-  }
-}
-
-async function createRecipe() {
-  try {
-    await recipesService.createRecipe()
-  } catch (error){
     Pop.error(error);
   }
 }
@@ -52,15 +44,15 @@ async function createRecipe() {
   <footer class="container-fluid">
     <div class="row">
       <div class="col-12 justify-content-end fixed-bottom text-end">
-        <button class="btn btn-success mb-5 me-5 create-recipe-button data-bs-toggle='modal' data-bs-target='#createRecipeModal'"><i class="mdi mdi-plus fs-1"></i></button>
+        <button class="btn btn-success mb-5 me-5 create-recipe-button" data-bs-toggle="modal" data-bs-target="#createRecipeModal"><i class="mdi mdi-plus fs-1"></i></button>
       </div>
     </div>
   </footer>
 
-<ReuseableModel modalId="createRecipeModal">
-  <template #modalHeader></template>
-  <template #modalBody><CreateRecipeForm /></template>
-</ReuseableModel>
+<ReuseableModal modalId="createRecipeModal">
+  <template #modalHeader>New Recipe</template>
+  <template #modalBody> <CreateRecipeForm /> </template>
+</ReuseableModal>
 </template>
 
 <style scoped lang="scss">

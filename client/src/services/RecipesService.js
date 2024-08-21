@@ -6,8 +6,10 @@ import { AppState } from "@/AppState.js"
 
 
 class RecipesService {
-    createRecipe() {
-      throw new Error('Method not implemented.')
+    async createRecipe(recipeData) {
+      const response = await api.post('api/recipes', recipeData)
+      logger.log("Creating a recipe", response.data)
+      
     }
     setActiveRecipe(recipeProp) {
         AppState.activeRecipe = recipeProp
